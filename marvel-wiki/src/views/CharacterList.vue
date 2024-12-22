@@ -44,8 +44,8 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { getCharacters } from "../services/marvelApi";
-import CardHero from "@/components/CardHero.vue";
-import PaginationButtons from "@/components/PaginationButtons.vue";
+import CardHero from "@/components/CharacterList/CardHero.vue";
+import PaginationButtons from "@/components/CharacterList/PaginationButtons.vue";
 import LoadingContainer from "@/components/LoadingContainer.vue";
 
 const characters = ref([]);
@@ -117,6 +117,7 @@ const scrollTop = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 40px;
 }
 
 .search-controls input {
@@ -141,11 +142,18 @@ const scrollTop = () => {
   .characters-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
 }
 
 @media (max-width: 480px) {
   .characters-grid {
     grid-template-columns: 1fr;
+  }
+  .search-controls {
+    padding: 0;
+  }
+  .characters-grid {
+    padding: 10px;
   }
 }
 </style>

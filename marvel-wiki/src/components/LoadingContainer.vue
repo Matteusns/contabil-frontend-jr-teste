@@ -29,7 +29,7 @@ library.add(faSpinner);
 
 .spinner {
   font-size: 3rem;
-  color: #3b82f6; /* Azul, mas você pode mudar */
+  color: #3b82f6;
 }
 
 .loading-text {

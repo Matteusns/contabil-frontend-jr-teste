@@ -40,11 +40,11 @@ import { computed } from "vue";
 library.add(faArrowRight, faArrowLeft);
 
 const maxPages = computed(() => {
-  return Math.round(props.totalCharacters / 10);
+  return Math.round(props.totalCharacters / 15);
 });
 
 const isLastPage = computed(() => {
-  const maxPage = Math.ceil(props.totalCharacters / 10) - 1;
+  const maxPage = Math.ceil(props.totalCharacters / 15) - 1;
   return props.pageNumber >= maxPage;
 });
 </script>
