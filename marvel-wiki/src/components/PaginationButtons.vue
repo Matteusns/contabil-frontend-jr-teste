@@ -3,12 +3,16 @@
     <button
       class="btn btn-primary btn-voltar"
       @click="handlePrevPage"
-      :disabled="pageNumber === 0"
+      :disabled="pageNumber === 0 || isLoading"
     >
       <FontAwesomeIcon :icon="faArrowLeft" /> Voltar
     </button>
     <p>Pagina {{ pageNumber + 1 }} de {{ maxPages }}</p>
-    <button class="btn btn-primary btn-proximo" @click="handleNextPage">
+    <button
+      class="btn btn-primary btn-proximo"
+      @click="handleNextPage"
+      :disabled="isLastPage || isLoading"
+    >
       Proximo <FontAwesomeIcon :icon="faArrowRight" />
     </button>
   </div>
@@ -38,12 +42,17 @@ library.add(faArrowRight, faArrowLeft);
 const maxPages = computed(() => {
   return Math.round(props.totalCharacters / 10);
 });
+
+const isLastPage = computed(() => {
+  const maxPage = Math.ceil(props.totalCharacters / 10) - 1;
+  return props.pageNumber >= maxPage;
+});
 </script>
 <style scoped>
 .pagination-buttons {
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .btn-voltar {

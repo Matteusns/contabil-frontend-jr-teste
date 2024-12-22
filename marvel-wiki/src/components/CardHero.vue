@@ -1,32 +1,22 @@
 <template>
   <div class="card" @click="navigateToDetail">
     <img :src="image" :alt="name" class="card-image" />
-    <div class="card-body">
-      <h3 class="card-title">{{ name }}</h3>
-      <p class="card-description">
-        {{ resumeDescription }}
-      </p>
+    <div class="card-title">
+      {{ name }}
     </div>
-    <div class="card-footer">Ver mais detalhes</div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useRouter } from "vue-router";
 const props = defineProps({
   id: Number,
   name: String,
   image: String,
   description: String,
+  isLoading: Boolean,
 });
 const router = useRouter();
-
-const resumeDescription = computed(() => {
-  return props.description && props.description.length > 100
-    ? props.description.slice(0, 100) + "..."
-    : props.description || "Sem descrição disponível";
-});
 
 const navigateToDetail = () => {
   router.push(`/character/${props.id}`);
@@ -55,33 +45,19 @@ const navigateToDetail = () => {
   object-fit: fit;
 }
 
-.card-body {
-  padding: 10px;
-  margin-bottom: 50px;
-  min-height: 210px;
-}
-
 .card-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.card-description {
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.6;
-}
-
-.card-footer {
-  padding: 15px 0;
-  width: 100%;
-  line-break: auto;
-  background-color: #f9fafb;
-  text-align: center;
-  font-size: 13px;
-  color: #6b7280;
-  bottom: 0%;
   position: absolute;
+  bottom: 0;
+  background-color: #202020;
+  color: #fff;
+  min-height: 40px;
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card-title h3 {
+  margin: 0;
 }
 </style>
