@@ -1,12 +1,21 @@
 <script setup>
 import { RouterView } from "vue-router";
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
   <Header />
+  <main class="main">
+    <RouterView />
+  </main>
 
-  <RouterView />
+  <Footer />
 </template>
 
-<style></style>
+<style scoped>
+  .main {
+    flex: 1;
+    min-height: 90vh;
+  }
+</style>

@@ -4,7 +4,7 @@
     <div class="card-body">
       <h3 class="card-title">{{ name }}</h3>
       <p class="card-description">
-        {{ truncatedDescription }}
+        {{ resumeDescription }}
       </p>
     </div>
     <div class="card-footer">Ver mais detalhes</div>
@@ -22,8 +22,7 @@ const props = defineProps({
 });
 const router = useRouter();
 
-// Computed para truncar a descrição corretamente
-const truncatedDescription = computed(() => {
+const resumeDescription = computed(() => {
   return props.description && props.description.length > 100
     ? props.description.slice(0, 100) + "..."
     : props.description || "Sem descrição disponível";

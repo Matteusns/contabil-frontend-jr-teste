@@ -9,8 +9,9 @@ export const privateKey = "30b5430e0e3f180787f38879d42b977eb46778b7";
 
 const hash = md5(ts + privateKey + publicKey).toString();
   
-export const getCharacters = () => {
-  return axios.get(`${baseURL}?ts=1&apikey=${publicKey}&hash=${hash}&limit=10`);
+export const getCharacters = (page) => {
+  const offset = page && page * 10;
+  return axios.get(`${baseURL}?ts=1&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offset}`);
 };
 
 export const getCharacterById = (id) => {
