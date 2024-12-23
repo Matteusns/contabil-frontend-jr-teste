@@ -1,7 +1,7 @@
 <template>
   <div class="pagination-buttons">
     <button
-      class="btn btn-primary btn-voltar"
+      class="btn btn-red btn-voltar"
       @click="handlePrevPage"
       :disabled="pageNumber === 0 || isLoading"
     >
@@ -9,7 +9,7 @@
     </button>
     <p>Pagina {{ pageNumber + 1 }} de {{ maxPages }}</p>
     <button
-      class="btn btn-primary btn-proximo"
+      class="btn btn-red btn-proximo"
       @click="handleNextPage"
       :disabled="isLastPage || isLoading"
     >

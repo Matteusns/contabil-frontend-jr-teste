@@ -69,6 +69,7 @@ const goBack = () => {
 
 <style scoped>
 .container-hero {
+  background-color: #ddd;
   padding: 40px;
   display: flex;
   gap: 20px;
@@ -90,6 +91,8 @@ p {
 }
 
 .container-extra {
+  background-color: #202020;
+  color: #fff;
   padding: 0 40px;
   display: flex;
   gap: 20px;

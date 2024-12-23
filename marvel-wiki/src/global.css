@@ -85,7 +85,12 @@ body {
   border-color: #ed1d24;
 }
 
-.btn-primary:disabled {
+.btn-red:hover {
+  background-color: #a11419;
+  border-color: #a11419;
+}
+
+.btn-primary:disabled, .btn-red:disabled {
   color: #fff;
   cursor: not-allowed;
   background-color: #92a7b9;
