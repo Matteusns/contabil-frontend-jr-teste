@@ -1,6 +1,6 @@
 <template>
     <div class="search-controls">
-      <p>
+      <p class="hidden show-md">
         Mostrando {{ filteredLength }} de {{ totalCharacters }} personagens
       </p>
       <div>
@@ -35,5 +35,16 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+  .hidden {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+  .show-md {
+    display: block;
+  }
+}
+
+
   </style>
   
