@@ -10,7 +10,7 @@ const router = createRouter({
       component: CharacterList,
     },
     {
-      path: '/about',
+      path: '/character/:id',
       component: CharacterDetail,
     },
   ],

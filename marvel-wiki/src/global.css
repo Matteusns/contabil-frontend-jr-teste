@@ -14,6 +14,7 @@ body {
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  position: relative;
 }
 
 @media (min-width: 640px) {
@@ -76,6 +77,12 @@ body {
   color: #fff;
   background-color: #0169d8;
   border-color: #0169d8;
+}
+
+.btn-red {
+  color: #fff;
+  background-color: #ed1d24;
+  border-color: #ed1d24;
 }
 
 .btn-primary:disabled {

@@ -1,24 +1,16 @@
 <template>
   <div class="container">
     <div>
-      <div>
+      <div class="search-area">
         <h1>Personagens da MARVEL</h1>
-        <div class="search-controls">
-          <p>
-            Mostrando {{ filteredCharacters.length && "15" }} de
-            {{ totalCharacters }} personagens
-          </p>
-          <div>
-            <label for="buscar">Buscar </label>
-            <input
-              id="buscar"
-              type="text"
-              v-model="searchText"
-              :disabled="loading"
-            />
-          </div>
-        </div>
+        <SearchControls
+          v-model="searchText"
+          :loading="loading"
+          :totalCharacters="totalCharacters"
+          :filteredLength="filteredCharacters.length"
+        />
       </div>
+
       <div class="characters-grid">
         <CardHero
           v-for="character in filteredCharacters"
@@ -47,6 +39,7 @@ import { getCharacters } from "../services/marvelApi";
 import CardHero from "@/components/CharacterList/CardHero.vue";
 import PaginationButtons from "@/components/CharacterList/PaginationButtons.vue";
 import LoadingContainer from "@/components/LoadingContainer.vue";
+import SearchControls from "@/components/CharacterList/SearchControls.vue";
 
 const characters = ref([]);
 const totalCharacters = ref(0);
@@ -106,24 +99,14 @@ const scrollTop = () => {
 .characters-grid {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 cards por linha */
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  margin-top: 20px;
-  padding: 40px;
+  padding: 20px 40px;
   min-height: 300px;
 }
 
-.search-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.search-area {
   padding: 0 40px;
-}
-
-.search-controls input {
-  border-radius: 5px;
-  border: 1px solid #000;
-  height: 25px;
 }
 
 @media (max-width: 1280px) {
@@ -142,7 +125,6 @@ const scrollTop = () => {
   .characters-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
 }
 
 @media (max-width: 480px) {
