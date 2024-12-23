@@ -2,7 +2,10 @@
   <div class="container">
     <div>
       <div class="search-area">
-        <h1>Personagens da MARVEL</h1>
+        <div class="margin-b-40">
+          <h1>Personagens da MARVEL</h1>
+          <span>Clique nos personagens para ver mais informações</span>
+        </div>
         <SearchControls
           v-model="searchText"
           :loading="loading"
@@ -57,10 +60,10 @@ const fetchCharacters = async () => {
   try {
     loading.value = true;
     const response = await getCharacters(pageNumber.value);
-    
+
     characters.value.push(...response.data.data.results);
     totalCharacters.value = response.data.data.total;
-    
+
     updateCharactersOnPage();
   } catch (error) {
     console.error("Erro ao buscar personagens", error);
@@ -82,7 +85,7 @@ const updateCharactersOnPage = () => {
   const start = pageNumber.value * charactersPerPage;
   const end = start + charactersPerPage;
   charactersOnPage.value = characters.value.slice(start, end);
-  scrollTop()
+  scrollTop();
 };
 
 const handleNextPage = () => {
@@ -122,9 +125,20 @@ const scrollTop = () => {
   padding: 20px 40px;
   min-height: 300px;
 }
+.margin-b-40 {
+  margin-bottom: 40px;
+}
 
 .search-area {
   padding: 0 40px;
+}
+
+.search-area h1 {
+  margin-bottom: 0;
+}
+
+.search-area span {
+  color: #6c757d;
 }
 
 @media (max-width: 1280px) {

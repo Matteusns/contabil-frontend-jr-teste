@@ -6,6 +6,7 @@ body {
   flex-direction: column;
   min-height: 90vh;
   position: relative;
+  background-color: #ddd;
 }
 
 .container {
