@@ -5,22 +5,22 @@
     </div>
     <LoadingContainer v-if="loading" />
     <div v-else>
-      <div class="container-hero">
+      <div v-if="character" class="container-hero">
         <div class="hero-img">
           <ImageHero
-            :image="`${character.thumbnail.path}.${character.thumbnail.extension}`"
-            :name="character.name"
+            :image="`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`"
+            :name="character?.name"
           />
         </div>
         <div class="hero-desc">
-          <h1>{{ character.name }}</h1>
-          <p>{{ character.description || "Nenhuma descrição disponível" }}</p>
+          <h1>{{ character?.name }}</h1>
+          <p>{{ character?.description || "Nenhuma descrição disponível" }}</p>
         </div>
       </div>
       <div class="container-extra">
         <div class="quadrinhos">
           <h1>Quadrinhos Relacionados</h1>
-          <ul class="lista-quadrinhos" v-if="character.comics.items.length">
+          <ul class="lista-quadrinhos" v-if="character?.comics?.items?.length">
             <li v-for="comic of character.comics.items">{{ comic.name }}</li>
           </ul>
           <p v-else>Nenhuma informação disponível</p>
@@ -28,7 +28,7 @@
 
         <div class="series">
           <h1>Series Relacionadas</h1>
-          <ul class="lista-quadrinhos" v-if="character.series.items.length">
+          <ul class="lista-quadrinhos" v-if="character?.series?.items?.length">
             <li v-for="serie of character.series.items">{{ serie.name }}</li>
           </ul>
           <p v-else>Nenhuma informação disponível</p>
@@ -37,6 +37,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from "vue";
