@@ -42,10 +42,12 @@ import LoadingContainer from "@/components/LoadingContainer.vue";
 import SearchControls from "@/components/CharacterList/SearchControls.vue";
 
 const characters = ref([]);
+const charactersOnPage = ref([]);
 const totalCharacters = ref(0);
 const pageNumber = ref(0);
 const searchText = ref("");
 const loading = ref(false);
+const charactersPerPage = 15;
 
 onMounted(async () => {
   fetchCharacters();
@@ -55,36 +57,52 @@ const fetchCharacters = async () => {
   try {
     loading.value = true;
     const response = await getCharacters(pageNumber.value);
+    
+    characters.value.push(...response.data.data.results);
     totalCharacters.value = response.data.data.total;
-    characters.value = response.data.data.results;
+    
+    updateCharactersOnPage();
   } catch (error) {
     console.error("Erro ao buscar personagens", error);
   } finally {
     loading.value = false;
-    scrollTop();
   }
 };
 
 const filteredCharacters = computed(() => {
   if (!searchText.value) {
-    return characters.value;
+    return charactersOnPage.value;
   }
-  return characters.value.filter((character) =>
+  return charactersOnPage.value.filter((character) =>
     character.name.toLowerCase().includes(searchText.value.toLowerCase())
   );
 });
 
+const updateCharactersOnPage = () => {
+  const start = pageNumber.value * charactersPerPage;
+  const end = start + charactersPerPage;
+  charactersOnPage.value = characters.value.slice(start, end);
+  scrollTop()
+};
+
 const handleNextPage = () => {
-  pageNumber.value = pageNumber.value + 1;
-  fetchCharacters();
+  const nextPage = pageNumber.value + 1;
+  const start = nextPage * charactersPerPage;
+
+  if (start >= characters.value.length) {
+    pageNumber.value = nextPage;
+    fetchCharacters();
+  } else {
+    pageNumber.value = nextPage;
+    updateCharactersOnPage();
+  }
 };
 
 const handlePrevPage = () => {
-  if (pageNumber != 0) {
+  if (pageNumber.value > 0) {
     pageNumber.value--;
+    updateCharactersOnPage();
   }
-
-  fetchCharacters();
 };
 
 const scrollTop = () => {
